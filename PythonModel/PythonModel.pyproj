@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{641fd60b-c3d5-4895-b5b2-758978492b83}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>GLO_AEM_script.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+    <PtvsTargetsFile>$(VSToolsPath)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <VSToolsPath Condition=" '$(VSToolsPath)' == '' ">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="GLO_AEM_basis.py" />
+    <Compile Include="GLO_AEM_script.py" />
+    <Compile Include="GLO_AEM_stochastic_generator.py" />
+    <Compile Include="GLO_AEM_stratigraphic_thickness.py" />
+    <Compile Include="ttim\ttim.py" />
+    <Compile Include="ttim\ttim2.py" />
+    <Compile Include="ttim\ttimtest1.py" />
+    <Compile Include="ttim\ttimtest1new.py" />
+    <Compile Include="ttim\ttimtest2.py" />
+    <Compile Include="ttim\ttimtest2new.py" />
+    <Compile Include="ttim\ttimtest3.py" />
+    <Compile Include="ttim\ttimtest3new.py" />
+    <Compile Include="ttim\ttimtest4.py" />
+    <Compile Include="ttim\ttimtest4new.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ttim\neuman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ttim" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>

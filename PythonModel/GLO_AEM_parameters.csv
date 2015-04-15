@@ -1,0 +1,17 @@
+ParamName,Value,Description,PythonIndex,Min,Max,Type
+CoalSeamID,0,Stochastic realisation number of coal seam distribution,0,0,999,Integer
+MajorFaultID,0,Stochastic realisation number of major fault distribution,1,0,999,Integer
+SubseismicFaultID,0,Stochastic realisation number of subseismic fault distribution,2,0,999,Integer
+K_a1_IB,3.00E-02,Parameter a1 in P=a1*exp(a2*depth) for Kh interburden,3,3.00E-03,3.00E-01,Float
+K_a1_CS,3.00E-01,Parameter a1 in P=a1*exp(a2*depth) for Kh coal seam,4,3.00E-02,3.00E+00,Float
+K_a2_IB,0.013,Parameter a2 in P=a1*exp(a2*depth) for Kh interburden,5,0.0065,0.026,Float
+K_a2_CS,0.013,Parameter a2 in P=a1*exp(a2*depth) for Kh coal seam,6,0.0065,0.026,Float
+S_a1_IB,2.30E-04,Parameter a1 in P=a1*exp(a2*depth) for S interburden,7,2.30E-05,2.30E-03,Float
+S_a1_CS,2.30E-03,Parameter a1 in P=a1*exp(a2*depth) for S coal seam,8,2.30E-04,2.30E-02,Float
+S_a2_IB,0.00542,Parameter a2 in P=a1*exp(a2*depth) for S interburden,9,0.00271,0.01084,Float
+S_a2_CS,0.00542,Parameter a2 in P=a1*exp(a2*depth) for S coal seam,10,0.00271,0.01084,Float
+KvKh,0.1,Kv over Kh for interburden,11,0.01,1,Float
+Kfh,1.00E-03,Fault horizontal hydraulic conductivity (m/d),12,1.00E-05,1.00E-01,Float
+Kfv,1.00E-03,Fault vertical hydraulic conductivity (m/d),13,1.00E-05,1.00E-01,Float
+ne,0.1,Specific yield of weathered zone leaky layer on top of model,14,0.001,0.3,Float
+dh_chd,2,Head to subtract from DEM to get constant head in weathered zone for MODFLOW models,15,0,5,Float
