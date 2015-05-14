@@ -37,6 +37,7 @@ params      = np.loadtxt('GLO_AEM_parameters.csv',delimiter=',',skiprows=1, usec
 coalseams   = np.loadtxt(r'..\inputs\coalseams\coalseams%04i.csv' % int(params[0]),delimiter=',',skiprows=1)
 majorfaults = np.loadtxt(r'..\inputs\majorfaults\majorfaults%04i.csv' % int(params[1]),delimiter=',',skiprows=1)
 subfaults   = np.loadtxt(r'..\inputs\subseismicfaults\subseismicfaults%04i.csv' % int(params[2]),delimiter=',',skiprows=1)
+boundary    = np.loadtxt('GLO_AEM_BasinBoundary.csv',delimiter=',',skiprows=1)
 nseams      = len(coalseams)
 nfaults     = len(np.unique(majorfaults[:,0]))
 nsubfaults  = len(np.unique(subfaults[:,0]))
@@ -108,6 +109,13 @@ ml_b = ttim.ModelMaq(kaq=Kaq[0],
 				   tmin = .01,
 				   tmax = outtime.max(),
 				   M = 20 )
+# Add basin boundary as noflow boundary
+ttim.LeakyLineDoubletString(ml_b,
+                            xy=boundary,
+                            res='imp',
+                            order=0,
+                            layers=1,
+                            label='BasinBoundary')
 # Add mines
 for i in range(nmines_b):
 	mine_tsandQ = mine_q_b[mine_q_b[:,0]==np.unique(mine_q_b[:,0])[i],1::]
@@ -158,6 +166,13 @@ ml_c1 = ttim.ModelMaq(kaq=Kaq,
 				   tmin = .01,
 				   tmax = wells[:,4].max(),
 				   M = 15 )
+# Add basin boundary as noflow boundary
+ttim.LeakyLineDoubletString(ml_c1,
+                            xy=boundary,
+                            res='imp',
+                            order=0,
+                            layers=1,
+                            label='BasinBoundary')
 # Add wells
 for i in range(nwells):
 	well_layers = np.argwhere(wells[i,5::]>0)+2
@@ -178,7 +193,7 @@ for i in range(nfaults):
 # Add subseismic faults
 for i in range(nsubfaults):
 	xy_f = subfaults[subfaults[:,0]==i+1,1:4]
-	cs_f = subfaults[subfaults[:,0]==i+1,3][0]
+	cs_f = subfaults[subfaults[:,0]==i+1,3][0]-2
 	ttim.ZeroMscreenLineSinkString(ml_c1,xy=xy_f,res=fhres,wh='H',
 								   layers=range(int(cs_f),int(cs_f+4)),vres=fvres_s,wv=.1,
 								   label='SubFault_v_'+str(i))
@@ -212,6 +227,13 @@ ml_c2 = ttim.ModelMaq(kaq=Kaq,
 				   tmin = .1,
 				   tmax = outtime.max(),
 				   M = 15 )
+# Add basin boundary as noflow boundary
+ttim.LeakyLineDoubletString(ml_c2,
+                            xy=boundary,
+                            res='imp',
+                            order=0,
+                            layers=1,
+                            label='BasinBoundary')
 # Add wells
 for i in range(nwells):
 	timeq = Q[:,:,i]
@@ -233,7 +255,7 @@ for i in range(nfaults):
 # Add subseismic faults
 for i in range(nsubfaults):
 	xy_f = subfaults[subfaults[:,0]==i+1,1:4]
-	cs_f = subfaults[subfaults[:,0]==i+1,3][0]
+	cs_f = subfaults[subfaults[:,0]==i+1,3][0]-2
 	ttim.ZeroMscreenLineSinkString(ml_c2,xy=xy_f,res=fhres,wh='H',
 								   layers=range(int(cs_f),int(cs_f+4)),vres=fvres_s,wv=.1,
 								   label='SubFault_v_'+str(i))
